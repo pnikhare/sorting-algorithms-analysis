@@ -3,6 +3,7 @@ import numpy as np
 from datetime import datetime 
 import time
 import timeit
+import matplotlib.pyplot as plt
 ## INSERTION SORT
 
 # Input : Array of Integers - arr
@@ -223,17 +224,17 @@ def main() :
 
 	
 	#### Random Input Generation and storing in file
-	INPUT_SIZE = 10000
-	inputFile = open("dataSet"+str(INPUT_SIZE)+".txt","w")
-	inputFile.writelines("%s\n" %random.randint(0,INPUT_SIZE) for x in range(0,INPUT_SIZE))
-	inputFile.close()
+	# INPUT_SIZE = 10000
+	# inputFile = open("dataSet"+str(INPUT_SIZE)+".txt","w")
+	# inputFile.writelines("%s\n" %random.randint(0,INPUT_SIZE) for x in range(0,INPUT_SIZE))
+	# inputFile.close()
 
 	### Reading the input From File and storing in Array
-	arr = []
-	inputFile = open("dataSet"+str(INPUT_SIZE)+".txt","r")
-	arr = np.loadtxt(inputFile,dtype=int)
-	#arr = [32,2,55,1,3,7,0,9,12,55,12,12]
-	inputFile.close()
+	# arr = []
+	# inputFile = open("dataSet"+str(INPUT_SIZE)+".txt","r")
+	# arr = np.loadtxt(inputFile,dtype=int)
+	# #arr = [32,2,55,1,3,7,0,9,12,55,12,12]
+	# inputFile.close()
 
 	print("Select Sorting Algorithm to test :")
 	print("1. Insertion Sort")
@@ -241,39 +242,138 @@ def main() :
 	print("3. Heap Sort")
 	print("4. In-Place Quick Sort")
 	print("5. Modified Quick Sort")
+	print("6. All Sorting Algorithms")
 
-	sorting = {
-		1:insertionSort,
-		2:mergeSort,
-		3:heapSort,
-		4:quickSort,
-		5:modifiedQuickSort
-	}
-	func = ""
-	while func=="" or func=="invalid" :
+	func = []
+	while len(func)==0 :
 		algorithm = input("Enter the Algorithm number :")
-		func = sorting.get(algorithm,"invalid")
-		if func=="invalid" :
-			print("Please Enter valid Input")
+		if algorithm ==6 :
+			func = [item for item in range(1,7)]
+			break
+		if (algorithm>=1 or algorithm<=5) :
+			func.append(algorithm)
+			break
+		print("Please Enter valid Input")
+	print("selected:",func)
 	
-    
-	print(arr)
-	startTime = time.time()
-	func(arr,0,len(arr)-1)
+	size = [1000,2000,3000,4000,5000,10000,20000,30000,40000,50000]
+	print("Random Genaration of DATASET started")
+	
+	for num in range(0,len(size)):
+		INPUT_SIZE = size[num]
+		inputFile = open("DataSet/dataSet"+str(INPUT_SIZE)+".txt","w")
+		inputFile.writelines("%s\n" %random.randint(0,INPUT_SIZE) for x in range(0,INPUT_SIZE))
+		inputFile.close()
+	
+	print("Random Genaration of DATASET Ended --")
+
+	insert = []
+	merge = []
+	heap = []
+	quick = []
+	modifiedQuick = []
+	for alg in func :
+		if alg==1 :
+			for num in range(0,len(size)):
+				arr = []
+				inputFile = open("DataSet/dataSet"+str(size[num])+".txt","r")
+				arr = np.loadtxt(inputFile,dtype=int)
+				inputFile.close()
+				startTime = time.time()
+				insertionSort(arr,0,len(arr)-1)
+				endTime = time.time()
+				timeElapsed = endTime-startTime
+				insert.append(timeElapsed)
+				print "Time elapsed in Execution of insertionSort :",timeElapsed," seconds"
+				outputFile = open("Result/ResultSet.txt","w")
+				outputFile.writelines("%s\n" %item for item in arr)
+				outputFile.close()
+		
+		elif alg==2:
+			for num in range(0,len(size)):
+				arr = []
+				inputFile = open("DataSet/dataSet"+str(size[num])+".txt","r")
+				arr = np.loadtxt(inputFile,dtype=int)
+				inputFile.close()
+				startTime = time.time()
+				mergeSort(arr,0,len(arr)-1)
+				endTime = time.time()
+				timeElapsed = endTime-startTime
+				merge.append(timeElapsed)
+				print "Time elapsed in Execution of MergeSort :",timeElapsed," seconds"
+				outputFile = open("Result/ResultSet.txt","w")
+				outputFile.writelines("%s\n" %item for item in arr)
+				outputFile.close()
+			
+
+		elif alg==3 :
+			for num in range(0,len(size)):
+				arr = []
+				inputFile = open("DataSet/dataSet"+str(size[num])+".txt","r")
+				arr = np.loadtxt(inputFile,dtype=int)
+				inputFile.close()
+				startTime = time.time()
+				heapSort(arr,0,len(arr)-1)
+				endTime = time.time()
+				timeElapsed = endTime-startTime
+				heap.append(timeElapsed)
+				print "Time elapsed in Execution of HeapSort :",timeElapsed," seconds"
+				outputFile = open("Result/ResultSet.txt","w")
+				outputFile.writelines("%s\n" %item for item in arr)
+				outputFile.close()
+		elif alg==4 :
+			for num in range(0,len(size)):
+				arr = []
+				inputFile = open("DataSet/dataSet"+str(size[num])+".txt","r")
+				arr = np.loadtxt(inputFile,dtype=int)
+				inputFile.close()
+				startTime = time.time()
+				quickSort(arr,0,len(arr)-1)
+				endTime = time.time()
+				timeElapsed = endTime-startTime
+				quick.append(timeElapsed)
+				print "Time elapsed in Execution of QuickSort :",timeElapsed," seconds"
+				outputFile = open("Result/ResultSet.txt","w")
+				outputFile.writelines("%s\n" %item for item in arr)
+				outputFile.close()
+		elif alg ==5 :
+			for num in range(0,len(size)):
+				arr = []
+				inputFile = open("DataSet/dataSet"+str(size[num])+".txt","r")
+				arr = np.loadtxt(inputFile,dtype=int)
+				inputFile.close()
+				startTime = time.time()
+				modifiedQuickSort(arr,0,len(arr)-1)
+				endTime = time.time()
+				timeElapsed = endTime-startTime
+				modifiedQuick.append(timeElapsed)
+				print "Time elapsed in Execution of modifiedQuickSort :",timeElapsed," seconds"
+				outputFile = open("Result/ResultSet.txt","w")
+				outputFile.writelines("%s\n" %item for item in arr)
+				outputFile.close()
+
+	plt.plot(size, insert, label = "Insertion Sort") 
+	plt.plot(size, merge, label = "Merge Sort")
+	plt.plot(size, heap, label = "Heap Sort")
+	plt.plot(size, quick, label = "Quick Sort")
+	plt.plot(size, modifiedQuick, label = "Modified Sort")
+	plt.xlabel('x - axis') 
+	plt.ylabel('y - axis') 
+	plt.title('Two lines on same graph!') 
+  	plt.legend()  	
+	plt.show() 
+
 	#insertionSort(arr,0,len(arr)-1)
 	#mergeSort(arr,0,len(arr)-1)
 	#quickSort(arr,0,len(arr)-1)
 	#modifiedQuickSort(arr,0,len(arr)-1)
 	#heapSort(arr,0,len(arr)-1)
 
-	endTime = time.time()
+	# x=[10000,50000]
+	# y1 = [7.544484853744507,190.93317294120789]
+	# y2 = [0.11221098899841309,0.44962191581726074]
+
 	
-	timeElapsed = endTime-startTime
-	print "Time elapsed in Execution of ",func,timeElapsed,"seconds"
-	outputFile = open("ResultSet.txt","w")
-	outputFile.writelines("%s\n" %item for item in arr)
-	outputFile.close()
-	print(arr)
 
 
 if __name__ == "__main__" :
