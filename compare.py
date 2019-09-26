@@ -22,8 +22,8 @@ def calculateAvg(func,execTime,INPUT_SIZE):
 		'modifiedQuick':modifiedQuickSort
 		
 	}
-	#### Taking average for 3 dataset
-	Num_Of_Case = 3
+	#### Should be Taking average for 3 dataset
+	Num_Of_Case = 1
 	timeElapsed = 0
 	sortingName = FuncName[func]
 	#alg = FuncName.get(func,lambda:"Invalid Function")
@@ -53,7 +53,6 @@ def main() :
 	print("4. In-Place Quick Sort")
 	print("5. Modified Quick Sort")
 	print("6. All Sorting Algorithms")
-
 	func = []
 	while len(func)==0 :
 		algorithm = input("Enter the Algorithm number :")
@@ -98,7 +97,6 @@ def main() :
 	print(quick)
 	print(modifiedQuick)
 
-
 	plt.plot(size, insert, label = "Insertion Sort") 
 	plt.plot(size, merge, label = "Merge Sort")
 	plt.plot(size, heap, label = "Heap Sort")
@@ -109,19 +107,6 @@ def main() :
 	plt.title('Two lines on same graph!')
 	plt.legend()  	
 	plt.show() 
-
-	#insertionSort(arr,0,len(arr)-1)
-	#mergeSort(arr,0,len(arr)-1)
-	#quickSort(arr,0,len(arr)-1)
-	#modifiedQuickSort(arr,0,len(arr)-1)
-	#heapSort(arr,0,len(arr)-1)
-
-	# x=[10000,50000]
-	# y1 = [7.544484853744507,190.93317294120789]
-	# y2 = [0.11221098899841309,0.44962191581726074]
-
-	
-
 
 if __name__ == "__main__" :
 	main()
