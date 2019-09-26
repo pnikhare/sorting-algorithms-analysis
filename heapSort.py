@@ -1,6 +1,5 @@
 #!/usr/bin/python
 
-
 ## MODIFIED HEAP SORT
 
 # Input : Array of Integers - arr
@@ -54,6 +53,12 @@ def _insertHeap(heap,currentIndex,value) :
 	while currentIndex>1 and heap[(currentIndex//2)-1] > heap[currentIndex-1] :
 		swap(heap,currentIndex-1,(currentIndex//2)-1)
 		currentIndex = currentIndex//2
+
+#Generic Function to swap two elements at index 1,2
+def swap(arr,index1,index2) :
+	temp = arr[index1]
+	arr[index1] = arr[index2]
+	arr[index2] = temp
 
 
 
