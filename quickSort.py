@@ -19,10 +19,10 @@ def _partition(arr,low,high) :
 	## Pick first element as pivot element
 	pivot = arr[low]
 	#print(pivot,"low:",low,"high",high)
-	i=low+1
+	i=low
 	j=high
 	
-	while i<j :
+	while (True) :
 
 		while i<=high and arr[i]<pivot :
 			i=i+1
@@ -30,10 +30,11 @@ def _partition(arr,low,high) :
 			j=j-1
 
 		if i<j :
-			swap(arr,i,j) 
-	if arr[low]>arr[j] :
-		swap(arr,low,j)
-	#print(arr)
+			arr[i],arr[j]=arr[j],arr[i] 
+		else:
+			break
+
+	arr[low],arr[j]=arr[j],arr[low]
 	return j
 
 #Generic Function to swap two elements at index 1,2

@@ -22,52 +22,29 @@ def _partitionModified(arr,low,high) :
 	## Pick media of first ,middle,last element as pivot element
 	pivotIndex = findMedian(arr,low,(low+high)//2,high)
 	pivot = arr[pivotIndex]
-	swap(arr,pivotIndex,high-1)
-	
-	i=low
+	arr[pivotIndex],arr[high-1]=arr[high-1],arr[pivotIndex]
+		
+	i=low+1
 	j=high-2
-	#print(pivot,"low:",low,"high",high)
 	
-	while i<j :
+	while (True) :
 
-		while arr[i]<pivot :
+		while i<=high and arr[i]<pivot :
 			i=i+1
-		while arr[j]>=pivot:
+		while j>low and arr[j]>=pivot:
 			j=j-1
 		if i<j :
-			swap(arr,i,j)
+			arr[i],arr[j]=arr[j],arr[i] 
 		else :
 			break
-	#if(arr[i]>arr[high-1]):
-	swap(arr,i,high-1)
-	#print(arr)
+	arr[i],arr[high-1]=arr[high-1],arr[i] 
 	return i
 
 def findMedian(arr,low,mid,high) :
-	x= arr[low]-arr[mid]
-	y= arr[mid]-arr[high]
-	z= arr[low]-arr[high]
-
-	if(x*y >=0) :
-		#mid is median
-		if (arr[low]>arr[high]) :
-			swap(arr,low,high)
-		
-	elif x*z >0 :
-		#high is median
-		if(arr[low]>arr[mid]) :
-			swap(arr,low,mid)
-		swap(arr,mid,high)
-		
-	else:
-		if(arr[mid]>arr[high]) :
-			swap(arr,mid,high)
-		swap(arr,low,mid)
-	#print("after swap of med",arr)
+	if (arr[low] > arr[mid]) :
+		arr[mid],arr[low]=arr[low],arr[mid]
+	if (arr[low] > arr[high]) :
+		arr[high],arr[low]=arr[low],arr[high]
+	if (arr[mid] > arr[high]) :
+		arr[mid],arr[high]=arr[high],arr[mid]
 	return mid
-
-#Generic Function to swap two elements at index 1,2
-def swap(arr,index1,index2) :
-	temp = arr[index1]
-	arr[index1] = arr[index2]
-	arr[index2] = temp
