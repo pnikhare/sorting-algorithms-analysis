@@ -11,7 +11,7 @@ from mergeSort import mergeSort
 from heapSort import heapSort
 from quickSort import quickSort
 from modifiedQuickSort import modifiedQuickSort
-from dataset_generator import dataset_count
+
 
 
 class Compare:
@@ -39,7 +39,7 @@ class Compare:
 		# Taking average given no of dataset , Default value : 3
 		# For generating avg on more number of dataset , execute dataset_generator.py
 		# before compare.py
-		self.Num_Of_Case = dataset_count
+		self.Num_Of_Case = 3
 		
 
 	# Function for calculating average time taken by each sorting algorithm
@@ -66,7 +66,7 @@ class Compare:
 
 
 	def main(self):
-		print("Average of exection time taken for :", dataset_count, " DataSet")
+		print("Average of exection time taken for :", self.Num_Of_Case, " DataSet")
 		print("Select Sorting Algorithm to test :")
 		print("1. Insertion Sort")
 		print("2. Merge Sort")
