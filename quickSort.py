@@ -19,7 +19,7 @@ def _partition(arr,low,high) :
 	## Pick first element as pivot element
 	pivot = arr[low]
 	#print(pivot,"low:",low,"high",high)
-	i=low
+	i=low+1
 	j=high
 	
 	while (True) :

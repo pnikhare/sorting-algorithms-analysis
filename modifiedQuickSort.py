@@ -13,14 +13,15 @@ def modifiedQuickSort(arr,low,high) :
 			modifiedQuickSort(arr,low,pivotIndex-1)
 			modifiedQuickSort(arr,pivotIndex+1,high)
 	else :
-		insertionSort(arr,low,high)
+		arr[low:high+1] = insertionSort(arr[low:high+1],0,high-low)
 
 	return arr
 	
 
 def _partitionModified(arr,low,high) :
 	## Pick media of first ,middle,last element as pivot element
-	pivotIndex = findMedian(arr,low,(low+high)//2,high)
+	pivotIndex=(low+high)//2
+	arr[low],arr[pivotIndex],arr[high] = findMedian(arr[low],arr[(low+high)//2],arr[high])
 	pivot = arr[pivotIndex]
 	arr[pivotIndex],arr[high-1]=arr[high-1],arr[pivotIndex]
 		
@@ -40,11 +41,11 @@ def _partitionModified(arr,low,high) :
 	arr[i],arr[high-1]=arr[high-1],arr[i] 
 	return i
 
-def findMedian(arr,low,mid,high) :
-	if (arr[low] > arr[mid]) :
-		arr[mid],arr[low]=arr[low],arr[mid]
-	if (arr[low] > arr[high]) :
-		arr[high],arr[low]=arr[low],arr[high]
-	if (arr[mid] > arr[high]) :
-		arr[mid],arr[high]=arr[high],arr[mid]
-	return mid
+def findMedian(low,mid,high) :
+	if (low >mid) :
+		mid,low=low,mid
+	if (low > high) :
+		high,low=low,high
+	if (mid > high) :
+		mid,high=high,mid
+	return low,mid,high
