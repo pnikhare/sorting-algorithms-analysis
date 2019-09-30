@@ -6,7 +6,7 @@ You need minimum python 3 latest or later version to run this code. To download 
 
 https://www.python.org/downloads/
 
-Few other dependencies are required by the program like numpy and matplotlib. If there are not installed then run the below commands  
+Few other dependencies are required by the program like numpy and matplotlib. If they are not installed then run the below commands  
 
 ```
 	pip3 install matplotlib
