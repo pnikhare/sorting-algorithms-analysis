@@ -27,7 +27,10 @@ User must provide the following inputs to generate the data set.
 1. Datasets to generate : Number of datasets for which average to be taken.
 2. How many numbers in each dataset : It is the maximum number of elements in each dataset from which inputs are taken. Give a number more or equal to 50,000
 
-Note : For large dataset, testing might take more time for calculating the average execution time of each sorting algorithm
+#### Note: This step is optional if user wants to use the data set files provided as part of code submission. 
+
+#### Note : For large dataset, testing might take more time for calculating the average execution time of each sorting algorithm
+
 
 ### Step 2. Execute a specific algorithm or all the algorithms and then compare their performances. 
 
@@ -61,4 +64,5 @@ Select Type of Data Set for sorting :
 3. Reversely Sorted Input
 ```
 
-Note: Please make sure you generate data set before running the executing or comparing the performance of all the algorithms. 
+Note: Please make sure you have generated data set files before running the executing or comparing the performance of all the algorithms. 
+
