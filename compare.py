@@ -141,6 +141,9 @@ class Compare:
 		plt.ylabel('Execution time in milliseconds')
 		plt.title('Graph comparing Sorting Algorithms !')
 		plt.legend()
+		plt.savefig('graph'+self.data_type.get(self.dataSet)+'.png')
+		print("Check graph"+self.data_type.get(self.dataSet)+'.png'+ " for saved graph")
+		print("Displaying plotted graph")
 		plt.show()
 
 resource.setrlimit(resource.RLIMIT_STACK, (2**29, -1))
