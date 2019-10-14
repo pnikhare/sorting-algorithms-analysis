@@ -1,4 +1,4 @@
-# Algo-Project
+# sorting-algorithms-analysis
 
 ## Requirement:
 
